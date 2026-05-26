@@ -37,25 +37,3 @@ Consola H2:
 ```text
 http://localhost:8080/api/h2-console
 ```
-
-Datos de conexion H2:
-
-```text
-JDBC URL: jdbc:h2:mem:adopcion
-User: sa
-Password: password
-```
-
-## Apagar el proyecto
-
-En la terminal donde esta corriendo Docker:
-
-```powershell
-Ctrl + C
-```
-
-Luego, si quieres detener y limpiar los contenedores:
-
-```powershell
-docker compose down
-```
