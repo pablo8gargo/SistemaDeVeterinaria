@@ -1,0 +1,749 @@
+{
+	"info": {
+		"_postman_id": "8c30c134-f6b7-490e-a968-eb2dcfb4fd5c",
+		"name": "ShelterArrivals",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/42241202-8c30c134-f6b7-490e-a968-eb2dcfb4fd5c?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create shelter arrival",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"shelter_arrival_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"date\": \"2025-05-26\",\r\n  \"description\": \"Rescatado de la calle\",\r\n  \"petCondition\": \"SICK\",\r\n  \"pet\" : {\r\n    \"id\" : {{new_pet_id_1}}\r\n  },\r\n  \"shelter\" : {\r\n    \"id\" : {{new_shelter_id_1}}\r\n  },\r\n  \"veterinarian\" : {\r\n    \"id\" : {{new_vet_id_1}}\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create shelter arrival",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-06-09\",\r\n  \"description\": \"Encontrado en un parque, desnutrido.\",\r\n  \"petCondition\": \"WEAK\",\r\n  \"pet\": {\r\n    \"id\": 105\r\n  },\r\n  \"shelter\": {\r\n    \"id\": 2\r\n  },\r\n  \"veterinarian\": {\r\n    \"id\": 3\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 5,\n    \"date\": \"2025-06-09\",\n    \"description\": \"Encontrado en un parque, desnutrido.\",\n    \"petCondition\": \"WEAK\",\n    \"pet\": {\n        \"id\": 105,\n        \"name\": \"Leo\",\n        \"birthDate\": \"2024-03-01\",\n        \"breed\": \"Pastor Alemán\",\n        \"size\": \"LARGE\",\n        \"gender\": \"MALE\",\n        \"behaviorProfile\": \"Asustadizo al principio, pero cariñoso.\"\n    },\n    \"shelter\": {\n        \"id\": 2,\n        \"name\": \"Hogar Animal Feliz\",\n        \"address\": \"Carrera 8 #20-30, Medellín\",\n        \"phone\": \"+57 300 1234567\",\n        \"email\": \"info@hogaranimalfeliz.org\"\n    },\n    \"veterinarian\": {\n        \"id\": 3,\n        \"name\": \"Dra. Laura Montes\",\n        \"licenseNumber\": \"VET-008\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get shelter arrival",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get shelter arrival",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 5,\n    \"date\": \"2025-06-09\",\n    \"description\": \"Encontrado en un parque, desnutrido.\",\n    \"petCondition\": \"WEAK\",\n    \"pet\": {\n        \"id\": 105,\n        \"name\": \"Leo\",\n        \"birthDate\": \"2024-03-01\",\n        \"breed\": \"Pastor Alemán\",\n        \"size\": \"LARGE\",\n        \"gender\": \"MALE\",\n        \"behaviorProfile\": \"Asustadizo al principio, pero cariñoso.\"\n    },\n    \"shelter\": {\n        \"id\": 2,\n        \"name\": \"Hogar Animal Feliz\",\n        \"address\": \"Carrera 8 #20-30, Medellín\",\n        \"phone\": \"+57 300 1234567\",\n        \"email\": \"info@hogaranimalfeliz.org\"\n    },\n    \"veterinarian\": {\n        \"id\": 3,\n        \"name\": \"Dra. Laura Montes\",\n        \"licenseNumber\": \"VET-008\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get non-exist shelter arrival",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter arrival not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get non-exist shelter arrival",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:26:46\",\n        \"message\": \"The shelter arrival with the given id was not found.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get all shelter arrivals",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of authors > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all shelter arrivals",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"date\": \"2025-05-26\",\n        \"description\": \"Rescatado de la calle\",\n        \"petCondition\": \"SICK\",\n        \"pet\": {\n            \"id\": 101,\n            \"name\": \"Sparky\"\n        },\n        \"shelter\": {\n            \"id\": 1,\n            \"name\": \"Refugio Esperanza\"\n        },\n        \"veterinarian\": {\n            \"id\": 2,\n            \"name\": \"Dra. Sofía Vargas\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"date\": \"2025-05-28\",\n        \"description\": \"Donado por familia, no pueden cuidarlo\",\n        \"petCondition\": \"HEALTHY\",\n        \"pet\": {\n            \"id\": 102,\n            \"name\": \"Bella\"\n        },\n        \"shelter\": {\n            \"id\": 3,\n            \"name\": \"Hogar Animal Feliz\"\n        },\n        \"veterinarian\": {\n            \"id\": 4,\n            \"name\": \"Dr. Carlos Ruiz\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"date\": \"2025-06-09\",\n        \"description\": \"Encontrado en un parque, desnutrido.\",\n        \"petCondition\": \"WEAK\",\n        \"pet\": {\n            \"id\": 105,\n            \"name\": \"Leo\"\n        },\n        \"shelter\": {\n            \"id\": 2,\n            \"name\": \"Hogar Animal Feliz\"\n        },\n        \"veterinarian\": {\n            \"id\": 3,\n            \"name\": \"Dra. Laura Montes\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "modify shelter arrival",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{shelter_arrival_id}},\r\n  \"arrivalDate\": \"2025-05-27\",\r\n  \"arrivalDetails\": \"Rescatado de la calle\",\r\n  \"petCondition\": \"RECOVERING\",\r\n  \"pet\" : {\r\n    \"id\" : {{new_pet_id_1}}\r\n  },\r\n  \"shelter\" : {\r\n    \"id\" : {{new_shelter_id_1}}\r\n  },\r\n  \"veterinarian\" : {\r\n    \"id\" : {{new_vet_id_1}}\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "modify shelter arrival",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 5,\r\n    \"date\": \"2025-06-10\",\r\n    \"description\": \"Encontrado en un parque, desnutrido. Iniciando tratamiento.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 5,\n    \"date\": \"2025-06-10\",\n    \"description\": \"Encontrado en un parque, desnutrido. Iniciando tratamiento.\",\n    \"petCondition\": \"RECOVERING\",\n    \"pet\": {\n        \"id\": 105,\n        \"name\": \"Leo\",\n        \"birthDate\": \"2024-03-01\",\n        \"breed\": \"Pastor Alemán\",\n        \"size\": \"LARGE\",\n        \"gender\": \"MALE\",\n        \"behaviorProfile\": \"Asustadizo al principio, pero cariñoso.\"\n    },\n    \"shelter\": {\n        \"id\": 2,\n        \"name\": \"Hogar Animal Feliz\",\n        \"address\": \"Carrera 8 #20-30, Medellín\",\n        \"phone\": \"+57 300 1234567\",\n        \"email\": \"info@hogaranimalfeliz.org\"\n    },\n    \"veterinarian\": {\n        \"id\": 3,\n        \"name\": \"Dra. Laura Montes\",\n        \"licenseNumber\": \"VET-008\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "modify non-exist shelter arrival",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter arrival not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"arrivalDate\": \"2025-05-27\",\r\n  \"arrivalDetails\": \"Rescatado de la calle\",\r\n  \"petCondition\": \"RECOVERING\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "modify non-exist shelter arrival",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"arrivalDate\": \"2025-05-27\",\r\n  \"arrivalDetails\": \"Rescatado de la calle\",\r\n  \"petCondition\": \"RECOVERING\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:27:40\",\n        \"message\": \"The shelter arrival with the given id was not found for update.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Shelter Arrival",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Shelter Arrival",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "remove a non-exist Shelter Arrival",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter arrival not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a non-exist Shelter Arrival",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:34:31\",\n        \"message\": \"The shelter arrival with the given id was not found.\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "new_pet_id_1",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "new_shelter_id_1",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "new_vet_id_1",
+			"value": "1",
+			"type": "default"
+		}
+	]
+}

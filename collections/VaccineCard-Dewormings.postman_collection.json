@@ -1,0 +1,1036 @@
+{
+	"info": {
+		"_postman_id": "71c7ea31-af28-404c-a466-03fd747ecf96",
+		"name": "VaccineCard-Dewormings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45430111-71c7ea31-af28-404c-a466-03fd747ecf96?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create deworming",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"dewormings_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brandName\": \"Bayer\",\r\n    \"date\": \"2025-06-07T00:00:00-05:00\",\r\n    \"description\": \"Desparasitación anual preventiva.\",\r\n    \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n    \"dosis\": 1.0,\r\n    \"type\": \"INTERNAL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/dewormings",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"dewormings"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create deworming",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brandName\": \"Bayer\",\r\n    \"date\": \"2025-06-07T00:00:00-05:00\",\r\n    \"description\": \"Desparasitación anual preventiva.\",\r\n    \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n    \"dosis\": 1.0,\r\n    \"type\": \"INTERNAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dewormings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dewormings"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"brandName\": \"Bayer\",\n    \"date\": \"2025-06-07T00:00:00-05:00\",\n    \"description\": \"Desparasitación anual preventiva.\",\n    \"nextDate\": \"2025-07-01T00:00:00-05:00\",\n    \"dosis\": 1,\n    \"type\": \"INTERNAL\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add a dewormer to a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings",
+						"{{dewormings_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a dewormer to a vaccine card",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings",
+								"{{dewormings_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"brandName\": \"Bayer\",\n    \"nextDate\": \"2025-08-01T00:00:00-05:00\",\n    \"dosis\": 2,\n    \"type\": \"INTERNAL\",\n    \"veterinarian\": {\n        \"id\": 3,\n        \"name\": \"Dr. Carlos Rodríguez\",\n        \"licenseNumber\": \"VET-2024-001\",\n        \"speciality\": \"INTERNAL_MEDICINE\"\n    },\n    \"vaccineCard\": {\n        \"id\": 2,\n        \"lastVacineDate\": \"2025-06-01T00:00:00-05:00\",\n        \"lastDewormingDate\": \"2025-05-15T00:00:00-05:00\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "add a non-existent dewormer to a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Vaccine Card not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a non-existent dewormer to a vaccine card",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The deworming with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get a dewormer from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings",
+						"{{dewormings_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a dewormer from a vaccine card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings",
+								"{{dewormings_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"brandName\": \"Bayer\",\n    \"nextDate\": \"2025-08-01T00:00:00-05:00\",\n    \"dosis\": 2,\n    \"type\": \"INTERNAL\",\n    \"veterinarian\": {\n        \"id\": 3,\n        \"name\": \"Dr. Carlos Rodríguez\",\n        \"licenseNumber\": \"VET-2024-001\",\n        \"speciality\": \"INTERNAL_MEDICINE\"\n    },\n    \"vaccineCard\": {\n        \"id\": 2,\n        \"lastVacineDate\": \"2025-06-01T00:00:00-05:00\",\n        \"lastDewormingDate\": \"2025-05-15T00:00:00-05:00\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get a dewormer that does not exist from a vaccination card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(412);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"In this vaccine card, dewormer not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a dewormer that does not exist from a vaccination card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The deworming with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get dewormers from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of dewormers > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccine-cards",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccine-cards"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get dewormers from a vaccine card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccine-cards/{",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccine-cards",
+								"{"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"brandName\": \"Bayer\",\n    \"nextDate\": \"2025-08-01T00:00:00-05:00\",\n    \"dosis\": 2,\n    \"type\": \"INTERNAL\",\n    \"veterinarian\": {\n        \"id\": 3,\n        \"name\": \"Dr. Carlos Rodríguez\",\n        \"licenseNumber\": \"VET-2024-001\",\n        \"speciality\": \"INTERNAL_MEDICINE\"\n    },\n    \"vaccineCard\": {\n        \"id\": 2,\n        \"lastVacineDate\": \"2025-06-01T00:00:00-05:00\",\n        \"lastDewormingDate\": \"2025-05-15T00:00:00-05:00\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get a dewormer that is not associated with a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(412);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.eql(\"In this vaccine card, deworming not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings",
+						"{{dewormings_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a dewormer that is not associated with a vaccine card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{deworming_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings",
+								"{{deworming_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The vaccine with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "associate deworming with a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": {{new_id_d1}},\r\n        \"brandName\": \"Bayer\",\r\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n        \"dosis\": 2.0,\r\n        \"type\": \"INTERNAL\",\r\n        \"veterinarian\": {\r\n            \"id\": {{vet_id_1}},\r\n            \"name\": \"Dr. Carlos Rodríguez\",\r\n            \"licenseNumber\": \"VET-2024-001\"\r\n        }\r\n    },\r\n    {\r\n        \"id\": {{new_id_d2}},\r\n        \"brandName\": \"Merck\",\r\n        \"nextDate\": \"2025-08-15T00:00:00-05:00\",\r\n        \"dosis\": 1.5,\r\n        \"type\": \"EXTERNAL\",\r\n        \"veterinarian\": {\r\n            \"id\": {{vet_id_2}},\r\n            \"name\": \"Dra. Ana López\",\r\n            \"licenseNumber\": \"VET-2024-002\"\r\n        }\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings",
+						"{{dewormings_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "associate deworming with a vaccine card",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": {{new_id_d1}},\r\n        \"brandName\": \"Bayer\",\r\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n        \"dosis\": 2.0,\r\n        \"type\": \"INTERNAL\",\r\n        \"veterinarian\": {\r\n            \"id\": {{vet_id_1}},\r\n            \"name\": \"Dr. Carlos Rodríguez\",\r\n            \"licenseNumber\": \"VET-2024-001\"\r\n        }\r\n    },\r\n    {\r\n        \"id\": {{new_id_d2}},\r\n        \"brandName\": \"Merck\",\r\n        \"nextDate\": \"2025-08-15T00:00:00-05:00\",\r\n        \"dosis\": 1.5,\r\n        \"type\": \"EXTERNAL\",\r\n        \"veterinarian\": {\r\n            \"id\": {{vet_id_2}},\r\n            \"name\": \"Dra. Ana López\",\r\n            \"licenseNumber\": \"VET-2024-002\"\r\n        }\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings",
+								"{{dewormings_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"brandName\": \"Bayer\",\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\n        \"dosis\": 2,\n        \"type\": \"INTERNAL\",\n        \"veterinarian\": {\n            \"id\": 1,\n            \"name\": \"Dr. Carlos Rodríguez\",\n            \"licenseNumber\": \"VET-2024-001\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"brandName\": \"Merck\",\n        \"nextDate\": \"2025-08-15T00:00:00-05:00\",\n        \"dosis\": 1.5,\n        \"type\": \"EXTERNAL\",\n        \"veterinarian\": {\n            \"id\": 2,\n            \"name\": \"Dra. Ana López\",\n            \"licenseNumber\": \"VET-2024-002\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "associating dewormers that do not exist with a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Failed to update, not found vaccine card with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"brandName\": \"Bayer\",\r\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n        \"dosis\": 2.0,\r\n        \"type\": \"INTERNAL\",\r\n        \"veterinarian\": {\r\n            \"id\": 1,\r\n            \"name\": \"Dr. Carlos Rodríguez\",\r\n            \"licenseNumber\": \"VET-2024-001\"\r\n        },\r\n        \"id\": 0\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "associating dewormers that do not exist with a vaccine card",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"brandName\": \"Bayer\",\r\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n        \"dosis\": 2.0,\r\n        \"type\": \"INTERNAL\",\r\n        \"veterinarian\": {\r\n            \"id\": 1,\r\n            \"name\": \"Dr. Carlos Rodríguez\",\r\n            \"licenseNumber\": \"VET-2024-001\"\r\n        },\r\n        \"id\": 0\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The deworming with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "delete a dewormer from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings",
+						"{{dewormings_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a dewormer from a vaccine card",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/{{dewormings_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings",
+								"{{dewormings_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a dewormer from a vaccine card that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Vaccine card not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/0/dewormings/{{dewormings_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"0",
+						"dewormings",
+						"{{dewormings_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a non-existent dewormer from a vaccine card",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/0/dewormings/{{dewormings_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"0",
+								"dewormings",
+								"{{dewormings_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a non-existent dewormer from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"In this vaccine card, deworming not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"dewormings",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a non-existent dewormer from a vaccine card",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/dewormings/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"dewormings",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a deworming",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/dewormings/{{dewormings_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"dewormings",
+						"{{dewormings_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a deworming",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brandName\": \"Bayer\",\r\n    \"date\": \"2025-06-07T00:00:00-05:00\",\r\n    \"description\": \"Desparasitación anual preventiva.\",\r\n    \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n    \"dosis\": 1,\r\n    \"type\": \"INTERNAL\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dewormings/{{dewormings_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dewormings",
+								"{{dewormings_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		}
+	]
+}

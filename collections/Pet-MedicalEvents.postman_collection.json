@@ -1,0 +1,1150 @@
+{
+	"info": {
+		"_postman_id": "17414080-6665-4c58-a1af-00da04107958",
+		"name": "Pet-MedicalEvents",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45430111-17414080-6665-4c58-a1af-00da04107958?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "Create Pet Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"pet_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Max\",\r\n    \"birthDate\": \"2020-05-15\",\r\n    \"breed\": \"Golden Retriever\",\r\n    \"size\": \"MEDIUM\",\r\n    \"gender\": \"MALE\",\r\n    \"behaviorProfile\": \"Friendly with kids and other pets\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/pets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Pet",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Max\",\r\n    \"birthDate\": \"2020-05-15\",\r\n    \"breed\": \"Golden Retriever\",\r\n    \"size\": \"MEDIUM\",\r\n    \"gender\": \"MALE\",\r\n    \"behaviorProfile\": \"Friendly with kids and other pets\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Max\",\r\n    \"birthDate\": \"2020-05-15\",\r\n    \"breed\": \"Golden Retriever\",\r\n    \"size\": \"MEDIUM\",\r\n    \"gender\": \"MALE\",\r\n    \"behaviorProfile\": \"Friendly with kids and other pets\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "create a Medical Event Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"medical_event_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2025-05-25\",\r\n    \"description\": \"API POST method creation\",\r\n    \"veterinarian\": {\r\n        \"id\": 1\r\n    },\r\n    \"pet\": {\r\n        \"id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/medical-events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"medical-events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create a Medical Event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2025-05-25\",\r\n    \"description\": \"API POST method creation\",\r\n    \"veterinarian\": {\r\n        \"id\": {{new_vet_id_1}}\r\n    },\r\n    \"pet\": {\r\n        \"id\": {{new_pet_id_1}}\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/medical-events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"medical-events",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{  \r\n    \"id\": {{medicalEvent_Id}},\r\n    \"date\": \"2025-05-25\",\r\n    \"description\": \"API POST method creation\",\r\n    \"veterinarian\": {\r\n        \"id\": \"{{new_vet_id_1}}\"\r\n        },\r\n    \"pet\": {\r\n        \"id\": \"{{new_pet_id_1}}\"\r\n        }\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "add a Medical Event to Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/{{medicalEvent_Id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events",
+						"{{medicalEvent_Id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a Medical Event to Pet",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/{{medicalEvent_Id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								"{{medicalEvent_Id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 101,\n    \"date\": \"2025-06-10\",\n    \"description\": \"Examen de rutina anual, incluye análisis de sangre.\",\n    \"veterinarian\": {\n        \"id\": 3\n    },\n    \"pet\": {\n        \"id\": 1,\n        \"name\": \"Max\",\n        \"birthDate\": \"2020-05-15\",\n        \"breed\": \"Golden Retriever\",\n        \"size\": \"MEDIUM\",\n        \"gender\": \"MALE\",\n        \"behaviorProfile\": \"Friendly with kids and other pets\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "add a  non-exist Medical Event to Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Medical event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a  non-exist Medical Event to Pet",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:18:46\",\n        \"message\": \"The medical event with the given id to associate was not found.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "set Medical Events to Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": {{new_medical_event_id_2}},\r\n    \"date\": \"2025-06-01\",\r\n    \"description\": \"Revisión general y desparasitación anual.\",\r\n    \"veterinarian\": {\r\n      \"id\": {{new_vet_id_1}}\r\n    },\r\n    \"pet\": {\r\n      \"id\": {{pet_id}}\r\n    }\r\n  },\r\n  {\r\n    \"id\": {{new_medical_event_id_2}},\r\n    \"date\": \"2025-07-10\",\r\n    \"description\": \"chequeo dental.\",\r\n    \"veterinarian\": {\r\n      \"id\": {{new_vet_id_1}}\r\n    },\r\n    \"pet\": {\r\n      \"id\": {{pet_id}}\r\n    }\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "set Medical Events to Pet",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 1,\r\n    \"date\": \"2025-06-01\",\r\n    \"description\": \"Revisión general y desparasitación anual.\",\r\n    \"veterinarian\": {\r\n      \"id\": 2\r\n    },\r\n    \"pet\": {\r\n      \"id\": 1\r\n    }\r\n  },\r\n  {\r\n    \"id\": 103,\r\n    \"date\": \"2025-07-10\",\r\n    \"description\": \"chequeo dental.\",\r\n    \"veterinarian\": {\r\n      \"id\": 5\r\n    },\r\n    \"pet\": {\r\n      \"id\": 1\r\n    }\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Max\",\r\n    \"birthDate\": \"2020-05-15\",\r\n    \"breed\": \"Golden Retriever\",\r\n    \"size\": \"MEDIUM\",\r\n    \"gender\": \"MALE\",\r\n    \"behaviorProfile\": \"Friendly with kids and other pets\",\r\n    \"medicalEvents\": [\r\n        {\r\n            \"id\": 1,\r\n            \"date\": \"2025-06-01\",\r\n            \"description\": \"Revisión general y desparasitación anual.\",\r\n            \"veterinarian\": {\r\n                \"id\": 2\r\n            }\r\n        },\r\n        {\r\n            \"id\": 103,\r\n            \"date\": \"2025-07-10\",\r\n            \"description\": \"chequeo dental.\",\r\n            \"veterinarian\": {\r\n                \"id\": 5\r\n            }\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "set non-exist Medical Events to Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Failed to update medical event with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": 0,\r\n    \"date\": \"2025-08-01\",\r\n    \"description\": \"Revisión post-operatoria.\",\r\n    \"veterinarian\": {\r\n      \"id\": {{new_vet_id_1}}\r\n    },\r\n    \"pet\": {\r\n      \"id\": {{pet_id}}\r\n    }\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "set non-exist Medical Events to Pet",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 1,\r\n    \"date\": \"2025-06-01\",\r\n    \"description\": \"Revisión general y desparasitación anual.\",\r\n    \"veterinarian\": {\r\n      \"id\": 2\r\n    },\r\n    \"pet\": {\r\n      \"id\": 1\r\n    }\r\n  },\r\n  {\r\n    \"id\": 103,\r\n    \"date\": \"2025-07-10\",\r\n    \"description\": \"chequeo dental.\",\r\n    \"veterinarian\": {\r\n      \"id\": 5\r\n    },\r\n    \"pet\": {\r\n      \"id\": 1\r\n    }\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:20:47\",\n        \"message\": \"One or more veterinarian IDs provided in the medical event list do not exist\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get all Medical Events from Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of medical events > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all Medical Events from Pet",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"date\": \"2025-06-01\",\n        \"description\": \"Revisión general y desparasitación anual.\",\n        \"veterinarian\": {\n            \"id\": 2\n        },\n        \"pet\": {\n            \"id\": 1,\n            \"name\": \"Max\",\n            \"birthDate\": \"2020-05-15\",\n            \"breed\": \"Golden Retriever\",\n            \"size\": \"MEDIUM\",\n            \"gender\": \"MALE\",\n            \"behaviorProfile\": \"Friendly with kids and other pets\"\n        }\n    },\n    {\n        \"id\": 103,\n        \"date\": \"2025-07-10\",\n        \"description\": \"chequeo dental.\",\n        \"veterinarian\": {\n            \"id\": 5\n        },\n        \"pet\": {\n            \"id\": 1,\n            \"name\": \"Max\",\n            \"birthDate\": \"2020-05-15\",\n            \"breed\": \"Golden Retriever\",\n            \"size\": \"MEDIUM\",\n            \"gender\": \"MALE\",\n            \"behaviorProfile\": \"Friendly with kids and other pets\"\n        }\n    },\n    {\n        \"id\": 105,\n        \"date\": \"2025-08-22\",\n        \"description\": \"Revisión de vacunación.\",\n        \"veterinarian\": {\n            \"id\": 2\n        },\n        \"pet\": {\n            \"id\": 1,\n            \"name\": \"Max\",\n            \"birthDate\": \"2020-05-15\",\n            \"breed\": \"Golden Retriever\",\n            \"size\": \"MEDIUM\",\n            \"gender\": \"MALE\",\n            \"behaviorProfile\": \"Friendly with kids and other pets\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get a non-exist Medical Event from Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {   \r",
+							"    pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Medical event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a non-exist Medical Event from Pet",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"09-06-2025 19:23:15\",\r\n        \"message\": \"The medical event with the given id was not found for this pet.\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get a Medical Event from Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/{{medicalEvent_Id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events",
+						"{{medicalEvent_Id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a Medical Event from Pet",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/{{medicalEvent_Id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								"{{medicalEvent_Id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"2025-06-09 19:24:00\",\r\n        \"message\": \"The pet with the given id was not found.\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Medical Event from Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/{{medicalEvent_Id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events",
+						"{{medicalEvent_Id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Medical Event from Pet",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/{{medicalEvent_Id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								"{{medicalEvent_Id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "remove a non-exist Medical Event from Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Medical event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}",
+						"medical-events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a non-exist Medical Event from Pet",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/{{pet_id}}/medical-events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{{pet_id}}",
+								"medical-events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:24:36\",\n        \"message\": \"The medical event with the given id was not found for this pet.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Medical Event from non-exist Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(412);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Pet not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/0/medical-events/{{medicalEvent_Id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"0",
+						"medical-events",
+						"{{medicalEvent_Id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Medical Event from non-exist Pet",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/0/medical-events/{{medicalEvent_Id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"0",
+								"medical-events",
+								"{{medicalEvent_Id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:24:36\",\n        \"message\": \"The pet with the given id was not found.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove  a Medical Event Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"description": "Required autenticate",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/medical-events/{{medicalEvent_Id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"medical-events",
+						"{{medicalEvent_Id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove  a Medical Event",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"description": "Required autenticate",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/medical-events/{{medicalEvent_Id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"medical-events",
+								"{{medicalEvent_Id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete pet Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pets/{{pet_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pets",
+						"{{pet_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete pet",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pets/{pet_id}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets",
+								"{pet_id}"
+							]
+						}
+					},
+					"status": "204 No Content",
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "new_medical_event_id_1",
+			"value": "2",
+			"type": "default"
+		},
+		{
+			"key": "new_medical_event_id_2",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "new_vet_id_1",
+			"value": "1",
+			"type": "default"
+		}
+	]
+}

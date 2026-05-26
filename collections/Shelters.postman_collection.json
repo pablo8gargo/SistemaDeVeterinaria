@@ -1,0 +1,657 @@
+{
+	"info": {
+		"_postman_id": "c4310eaf-5df1-48e0-acb0-11a17142c80f",
+		"name": "Shelters",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45283390-c4310eaf-5df1-48e0-acb0-11a17142c80f?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"shelter_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelters",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create shelter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get all the shelters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of shelters > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelters",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all the shelters",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n    \"id\": 1,\n    \"name\": \"Refugio Esperanza\",\n    \"address\": \"Calle 123 #45-67, Bogotá\",\n    \"phone\": \"+57 321 6549870\",\n    \"email\": \"contacto@refugioesperanza.org\",\n    \"shelterEvents\": [],\n    \"pets\": [],\n    \"shelterArrivals\": []\n    }\n]\n"
+				}
+			]
+		},
+		{
+			"name": "get a shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelter/{{shelter_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter",
+						"{{shelter_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a shelter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}shelter/{id_shelter}",
+							"host": [
+								"{{baseUrl}}shelter"
+							],
+							"path": [
+								"{id_shelter}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Refugio Esperanza\",\n    \"address\": \"Calle 123 #45-67, Bogotá\",\n    \"phone\": \"+57 321 6549870\",\n    \"email\": \"contacto@refugioesperanza.org\",\n    \"shelterEvents\": [],\n    \"pets\": [],\n    \"shelterArrivals\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "get a shelter that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"The shelter with the given id was not found\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}shelter/0",
+					"host": [
+						"{{baseUrl}}shelter"
+					],
+					"path": [
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a shelter that does not exist",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}shelter/0",
+							"host": [
+								"{{baseUrl}}shelter"
+							],
+							"path": [
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"22-05-2025 10:01:09\",\n        \"message\": \"The shelter with the given id was not found\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "update a shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 100 #65-7, Bogotá\", //dato actualizado\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}shelter/{{shelter_id}}",
+					"host": [
+						"{{baseUrl}}shelter"
+					],
+					"path": [
+						"{{shelter_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update a shelter",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 100 #65-7, Bogotá\", //dato actualizado\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelter/{id_shelter}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter",
+								"{id_shelter}"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Refugio Esperanza\",\n    \"address\": \"Calle 100 #65-7, Bogotá\",\n    \"phone\": \"+57 321 6549870\",\n    \"email\": \"contacto@refugioesperanza.org\"\n }"
+				}
+			]
+		},
+		{
+			"name": "update a shelter that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"The shelter with the given id was not found\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelter/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update a shelter that does not exist",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelter/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"22-05-2025 10:04:10\",\r\n\r\n        \"message\": \"The shelter with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "delete a shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelter/{id_shelter}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter",
+								"{id_shelter}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a shelter that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"The shelter with the given id was not found\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a shelter that does not exist",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelter/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"22-05-2025 10:04:10\",\r\n\r\n        \"message\": \"The shelter with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "multimedia_id",
+			"value": "1",
+			"type": "default"
+		}
+	]
+}

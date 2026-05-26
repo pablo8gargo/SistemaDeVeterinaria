@@ -1,0 +1,814 @@
+{
+	"info": {
+		"_postman_id": "26dd7bf2-0fc6-4367-a3b3-e6fe150936e2",
+		"name": "Veterinarian-AdoptionAplications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45430111-26dd7bf2-0fc6-4367-a3b3-e6fe150936e2?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create veterinarian",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"firstName\": \"Gabriel\",\r\n    \"lastName\": \"Muñoz Martinez\",\r\n    \"email\": \"gabriel.martinez@example.com\",\r\n    \"phoneNumber\": \"+57 123 4567890\",\r\n    \"licenseNumber\": \"123456789\",\r\n    \"speciality\": \"INTERNAL_MEDICINE\"\r\n    \r\n    \r\n\r\n    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create veterinarian",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"firstName\": \"Gabriel\",\r\n    \"lastName\": \"Muñoz Martinez\",\r\n    \"email\": \"gabriel.martinez@example.com\",\r\n    \"phoneNumber\": \"+57 123 4567890\",\r\n    \"licenseNumber\": \"123456789\",\r\n    \"speciality\": \"INTERNAL_MEDICINE\"\r\n    \r\n        \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"firstName\": \"Gabriel\",\n    \"lastName\": \"Muñoz Martinez\",\n    \"email\": \"gabriel.martinez@example.com\",\n    \"phoneNumber\": \"+57 123 4567890\",\n    \"licenseNumber\": \"123456789\",\n    \"speciality\": \"INTERNAL_MEDICINE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an adoption application to a veterinarian",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/{{adoptionAplication_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption-applications",
+						"{{adoptionAplication_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an adoption application to a veterinarian",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/{{adptionAplication_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications",
+								"{{adptionAplication_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"applicationDate\": \"2024-06-08T10:00:00-05:00\",\n    \"applicationEnd\": \"2024-06-10T10:00:00-05:00\",\n    \"observations\": \"Solicitud para adoptar a Firulais.\",\n    \"applicationStatus\": \"PENDING\",\n    \"result\": \"IN_PROGRESS\",\n    \n    \"veterinarian\": {\n        \"id\": 2,\n        \"licenseNumber\": \"123456789\",\n        \"speciality\": \"Medicina Interna\",\n        \"firstName\": \"Dr. Gabriel\",\n        \"lastName\": \"García\",\n        \"email\": \"gabriel.garcia@veterinaria.com\",\n        \"phoneNumber\": \"+57 123 4567890\"\n    }\n\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a non-existent adoption application to a car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The adoption aplication with the given id was not found\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption-applications",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add a non-existent adoption application to a car",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The adoption  aplication  with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "obtain an adoption application from an author",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/{{adoptionAplication_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption-applications",
+						"{{adoptionAplication_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "obtain an adoption application from an author",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/{{adptionAplication_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications",
+								"{{adptionAplication_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "00{\r\n    \"id\": 1,\r\n    \"applicationDate\": \"2024-06-08T10:00:00-05:00\",\r\n    \"applicationEnd\": \"2024-06-10T10:00:00-05:00\",\r\n    \"observations\": \"Solicitud para adoptar a Firulais.\",\r\n    \"applicationStatus\": \"PENDING\",\r\n    \"result\": \"IN_PROGRESS\",\r\n    \r\n    \"veterinarian\": {\r\n        \"id\": 5,\r\n        \"licenseNumber\": \"123456789\",\r\n        \"speciality\": \"Medicina Interna\",\r\n        \"medicalEvents\": [],\r\n        \"disponibilities\": [],\r\n        \"adoptionApplications\": [],\r\n        \"followUps\": [],\r\n        \"adoptions\": [],\r\n        \"adoptionTests\": [],\r\n        \"shelterArrivals\": []\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtain a non-existent adoption application from a veterinarian",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption-applications",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtain a non-existent adoption application from a veterinarian",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:17:39\",\r\n\r\n        \"message\": \"The adoption aplication with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtain an adoption application that is not associated with a veterinarian",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/{{adoptionAplication_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption-applications",
+						"{{adoptionAplication_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtain an adoption application that is not associated with a veterinarian",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/{{adptionAplication_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications",
+								"{{adptionAplication_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"PRECONDITION_FAILED\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:19:03\",\r\n\r\n        \"message\": \"The adoption aplication is not associated to the veterinarian\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtain adoption applications from a veterinarian",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/veterinarians",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"veterinarians"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtain adoption applications from a veterinarian",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/veterinarians",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"veterinarians"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"applicationDate\": \"2024-06-08T10:00:00-05:00\",\n    \"applicationEnd\": \"2024-06-10T10:00:00-05:00\",\n    \"observations\": \"Solicitud para adoptar a Firulais.\",\n    \"applicationStatus\": \"PENDING\",\n    \"result\": \"IN_PROGRESS\",\n    \"veterinarian\": {\n        \"id\": 5,\n        \"licenseNumber\": \"123456789\",\n        \"speciality\": \"Medicina Interna\",\n        \"medicalEvents\": [],\n        \"disponibilities\": [],\n        \"adoptionApplications\": [],\n        \"followUps\": [],\n        \"adoptions\": [],\n        \"adoptionTests\": [],\n        \"shelterArrivals\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Associate adoption application with a veterinarian",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": {{new_id_1}},\r\n        \"applicationDate\": \"2024-06-08T10:00:00-05:00\",\r\n        \"applicationEnd\": \"2024-06-10T10:00:00-05:00\",\r\n        \"observations\": \"Solicitud para adoptar a Firulais.\",\r\n        \"applicationStatus\": \"PENDING\",\r\n        \"result\": \"IN_PROGRESS\"\r\n    },\r\n\r\n    {\r\n        \"id\": {{new_id_2}},\r\n        \"applicationDate\": \"2024-07-01T09:00:00-05:00\",\r\n        \"applicationEnd\": \"2024-07-03T09:00:00-05:00\",\r\n        \"observations\": \"Solicitud para adoptar a Luna.\",\r\n        \"applicationStatus\": \"PENDING\",\r\n        \"result\": \"IN_PROGRESS\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption-applications"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Associate adoption application with a veterinarian",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": {{new_id_1}},\r\n        \"applicationDate\": \"2024-06-08T10:00:00-05:00\",\r\n        \"applicationEnd\": \"2024-06-10T10:00:00-05:00\",\r\n        \"observations\": \"Solicitud para adoptar a Firulais.\",\r\n        \"applicationStatus\": \"PENDING\",\r\n        \"result\": \"IN_PROGRESS\"\r\n    },\r\n\r\n    {\r\n        \"id\": {{new_id_2}},\r\n        \"applicationDate\": \"2024-07-01T09:00:00-05:00\",\r\n        \"applicationEnd\": \"2024-07-03T09:00:00-05:00\",\r\n        \"observations\": \"Solicitud para adoptar a Luna.\",\r\n        \"applicationStatus\": \"PENDING\",\r\n        \"result\": \"IN_PROGRESS\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"applicationDate\": \"2024-06-08T10:00:00-05:00\",\n        \"applicationEnd\": \"2024-06-10T10:00:00-05:00\",\n        \"observations\": \"Solicitud para adoptar a Firulais.\",\n        \"applicationStatus\": \"PENDING\",\n        \"result\": \"IN_PROGRESS\"\n    },\n    {\n        \"id\": 2,\n        \"applicationDate\": \"2024-07-01T09:00:00-05:00\",\n        \"applicationEnd\": \"2024-07-03T09:00:00-05:00\",\n        \"observations\": \"Solicitud para adoptar a Luna.\",\n        \"applicationStatus\": \"PENDING\",\n        \"result\": \"IN_PROGRESS\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Associate a non-existent adoption application with a veterinarian",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 0,\r\n        \"applicationDate\": \"2024-06-08T10:00:00-05:00\",\r\n        \"applicationEnd\": \"2024-06-10T10:00:00-05:00\",\r\n        \"observations\": \"Solicitud para adoptar a Firulais.\",\r\n        \"applicationStatus\": \"PENDING\",\r\n        \"result\": \"IN_PROGRESS\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption-applications"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Associate a non-existent adoption application with a veterinarian",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 0,\r\n        \"applicationDate\": \"2024-06-08T10:00:00-05:00\",\r\n        \"applicationEnd\": \"2024-06-10T10:00:00-05:00\",\r\n        \"observations\": \"Solicitud para adoptar a Firulais.\",\r\n        \"applicationStatus\": \"PENDING\",\r\n        \"result\": \"IN_PROGRESS\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:25:21\",\r\n\r\n        \"message\": \"The adoption aplication with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a non-existent adoption application from a veterinarian",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/{{adoptionAplication_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption-applications",
+						"{{adoptionAplication_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a non-existent adoption application from a veterinarian",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/{{adptionAplication_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications",
+								"{{adptionAplication_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an adoption application from a veterinarian who doesn't exist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/0/adoption-applications/{{adoptionAplication_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"0",
+						"adoption-applications",
+						"{{adoptionAplication_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an adoption application from a veterinarian who doesn't exist",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/0/adoption-applications/{{adptionAplication_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"0",
+								"adoption-applications",
+								"{{adptionAplication_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete a non-existent adoption application from a veterinarian",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoptionapplications/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoptionapplications",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a non-existent adoption application from a veterinarian",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption-applications/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption-applications",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a veterinarian",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a veterinarian",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{id_veterinarian}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{id_veterinarian}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		}
+	]
+}

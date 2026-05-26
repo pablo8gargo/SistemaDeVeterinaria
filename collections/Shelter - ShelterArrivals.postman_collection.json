@@ -1,0 +1,1178 @@
+{
+	"info": {
+		"_postman_id": "75ef16a4-5350-4f03-89a2-0c575330a96e",
+		"name": "Shelter - ShelterArrivals",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/42241202-75ef16a4-5350-4f03-89a2-0c575330a96e?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create shelter Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"shelter_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelters",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create shelter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "create shelter arrival Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"shelter_arrival_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"date\": \"2025-05-26\",\r\n  \"description\": \"Rescatado de la calle\",\r\n  \"petCondition\": \"SICK\",\r\n  \"pet\" : {\r\n    \"id\" : {{new_pet_id_1}}\r\n  },\r\n  \"shelter\" : {\r\n    \"id\" : {{new_shelter_id_1}}\r\n  },\r\n  \"veterinarian\" : {\r\n    \"id\" : {{new_vet_id_1}}\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create shelter arrival",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-06-09\",\r\n  \"description\": \"Encontrado en un parque, desnutrido.\",\r\n  \"petCondition\": \"WEAK\",\r\n  \"pet\": {\r\n    \"id\": 105\r\n  },\r\n  \"shelter\": {\r\n    \"id\": 2\r\n  },\r\n  \"veterinarian\": {\r\n    \"id\": 3\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 5,\n    \"date\": \"2025-06-09\",\n    \"description\": \"Encontrado en un parque, desnutrido.\",\n    \"petCondition\": \"WEAK\",\n    \"pet\": {\n        \"id\": 105,\n        \"name\": \"Leo\",\n        \"birthDate\": \"2024-03-01\",\n        \"breed\": \"Pastor Alemán\",\n        \"size\": \"LARGE\",\n        \"gender\": \"MALE\",\n        \"behaviorProfile\": \"Asustadizo al principio, pero cariñoso.\"\n    },\n    \"shelter\": {\n        \"id\": 2,\n        \"name\": \"Hogar Animal Feliz\",\n        \"address\": \"Carrera 8 #20-30, Medellín\",\n        \"phone\": \"+57 300 1234567\",\n        \"email\": \"info@hogaranimalfeliz.org\"\n    },\n    \"veterinarian\": {\n        \"id\": 3,\n        \"name\": \"Dra. Laura Montes\",\n        \"licenseNumber\": \"VET-008\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "add a Shelter Arrival to Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a Shelter Arrival to Shelter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 5,\n    \"date\": \"2025-06-10\",\n    \"description\": \"Encontrado en un parque, desnutrido. Iniciando tratamiento.\",\n    \"petCondition\": \"RECOVERING\",\n    \"pet\": {\n        \"id\": 105,\n        \"name\": \"Leo\",\n        \"birthDate\": \"2024-03-01\",\n        \"breed\": \"Pastor Alemán\",\n        \"size\": \"LARGE\",\n        \"gender\": \"MALE\",\n        \"behaviorProfile\": \"Asustadizo al principio, pero cariñoso.\"\n    },\n    \"shelter\": {\n        \"id\": 1,\n        \"name\": \"Refugio Esperanza\",\n        \"address\": \"Calle 123 #45-67, Bogotá\",\n        \"phone\": \"+57 321 6549870\",\n        \"email\": \"contacto@refugioesperanza.org\"\n    },\n    \"veterinarian\": {\n        \"id\": 3,\n        \"name\": \"Dra. Laura Montes\",\n        \"licenseNumber\": \"VET-008\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "add a  non-exist Shelter Arrival to Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter arrival not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a  non-exist Shelter Arrival to Shelter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:37:22\",\n        \"message\": \"The shelter arrival with the given id was not found for update.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "set Shelter Arrivals to Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\" : {{new_arrival_id_1}},\r\n    \"date\": \"2025-05-27\",\r\n    \"description\": \"Perro encontrado en la calle con leves heridas.\",\r\n    \"petCondition\": \"INJURED\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "set Shelter Arrivals to Shelter",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 1,\r\n    \"Date\": \"2025-05-27\",\r\n    \"Description\": \"Perro encontrado en la calle con leves heridas.\",\r\n    \"petCondition\": \"INJURED\",\r\n    \"petId\": 101,\r\n    \"shelterId\": 1,\r\n    \"veterinarianId\": 2\r\n  },\r\n  {\r\n    \"id\": 3,\r\n    \"Date\": \"2025-05-28\",\r\n    \"Description\": \"Gato abandonado en la puerta del refugio.\",\r\n    \"petCondition\": \"HEALTHY\",\r\n    \"petId\": 102,\r\n    \"shelterId\": 1,\r\n    \"veterinarianId\": 3\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Refugio Esperanza\",\n    \"address\": \"Calle 123 #45-67, Bogotá\",\n    \"phone\": \"+57 321 6549870\",\n    \"email\": \"contacto@refugioesperanza.org\",\n    \"shelterEvents\": [],\n    \"pets\": [],\n    \"shelterArrivals\": [\n        {\n            \"id\": 1,\n            \"Date\": \"2025-05-27\",\n            \"Description\": \"Perro encontrado en la calle con leves heridas.\",\n            \"petCondition\": \"INJURED\",\n            \"pet\": {\n                \"id\": 101,\n                \"name\": \"Fido\"\n            },\n            \"veterinarian\": {\n                \"id\": 2,\n                \"name\": \"Dra. Sofía Vargas\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"Date\": \"2025-05-28\",\n            \"Description\": \"Gato abandonado en la puerta del refugio.\",\n            \"petCondition\": \"HEALTHY\",\n            \"pet\": {\n                \"id\": 102,\n                \"name\": \"Whiskers\"\n            },\n            \"veterinarian\": {\n                \"id\": 3,\n                \"name\": \"Dr. Carlos Ruiz\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "set non-exist Shelter Arrivals to Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Failed to update, not found shelter arrival with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\" : 0,\r\n    \"date\": \"2025-05-26\",\r\n    \"description\": \"Rescatado de la calle\",\r\n    \"petCondition\": \"SICK\",\r\n    \"pet\" : {\r\n        \"id\" : 2\r\n    },\r\n    \"shelter\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"veterinarian\" : {\r\n        \"id\" : 1\r\n    }\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "set non-exist Shelter Arrivals to Shelter",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 1,\r\n    \"Date\": \"2025-05-27\",\r\n    \"Description\": \"Perro encontrado en la calle con leves heridas.\",\r\n    \"petCondition\": \"INJURED\",\r\n    \"petId\": 101,\r\n    \"shelterId\": 1,\r\n    \"veterinarianId\": 2\r\n  },\r\n  {\r\n    \"id\": 999,  // Este ID de Shelter Arrival NO EXISTE\r\n    \"Date\": \"2025-05-28\",\r\n    \"Description\": \"Gato abandonado en la puerta del refugio.\",\r\n    \"petCondition\": \"HEALTHY\",\r\n    \"petId\": 102,\r\n    \"shelterId\": 1,\r\n    \"veterinarianId\": 3\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:37:59\",\n        \"message\": \"A shelter with the given ids was not found.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get all Shelter Arrivals from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of shelter arrivals > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all Shelter Arrivals from Shelter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"Date\": \"2025-05-27\",\n        \"Description\": \"Perro encontrado en la calle con leves heridas.\",\n        \"petCondition\": \"INJURED\",\n        \"pet\": {\n            \"id\": 101,\n            \"name\": \"Fido\"\n        },\n        \"veterinarian\": {\n            \"id\": 2,\n            \"name\": \"Dra. Sofía Vargas\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"Date\": \"2025-05-28\",\n        \"Description\": \"Gato abandonado en la puerta del refugio.\",\n        \"petCondition\": \"HEALTHY\",\n        \"pet\": {\n            \"id\": 102,\n            \"name\": \"Whiskers\"\n        },\n        \"veterinarian\": {\n            \"id\": 3,\n            \"name\": \"Dr. Carlos Ruiz\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get a non-exist Shelter Arrival from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(412);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"In this shelter, shelter arrival not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a non-exist Shelter Arrival from Shelter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:41:01\",\n        \"message\": \"The shelter arrival with the given id was not found for this shelter.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get a Shelter Arrival from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a Shelter Arrival from Shelter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"Date\": \"2025-05-27\",\n    \"Description\": \"Perro encontrado en la calle con leves heridas.\",\n    \"petCondition\": \"INJURED\",\n    \"pet\": {\n        \"id\": 101,\n        \"name\": \"Fido\",\n        \"birthDate\": \"2023-03-01\",\n        \"breed\": \"Beagle\",\n        \"size\": \"MEDIUM\",\n        \"gender\": \"MALE\",\n        \"behaviorProfile\": \"Juguetón, necesita atención.\"\n    },\n    \"veterinarian\": {\n        \"id\": 2,\n        \"name\": \"Dra. Sofía Vargas\",\n        \"licenseNumber\": \"VET-005\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Shelter Arrival from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Shelter Arrival from Shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "remove a non-exist Shelter Arrival from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"In this shelter, shelter arrival not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"arrivals",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a non-exist Shelter Arrival from Shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/arrivals/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"arrivals",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:42:15\",\n        \"message\": \"The shelter arrival with the given id was not found for this shelter.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Shelter Arrival from non-exist Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/0/arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"0",
+						"arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Shelter Arrival from non-exist Shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/0/arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"0",
+								"arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:42:15\",\n        \"message\": \"The shelter with the given id was not found.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Shelter Arrival Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-arrivals/{{shelter_arrival_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-arrivals",
+						"{{shelter_arrival_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Shelter Arrival",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-arrivals/{{shelter_arrival_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-arrivals",
+								"{{shelter_arrival_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a shelter Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelter/{id_shelter}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter",
+								"{id_shelter}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "new_vet_id_1",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "new_shelter_id_1",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "new_pet_id_1",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "new_pet_id_2",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "new_vet_id_2",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "new_arrival_id_1",
+			"value": "1",
+			"type": "default"
+		}
+	]
+}

@@ -1,0 +1,1033 @@
+{
+	"info": {
+		"_postman_id": "77323dac-e416-49f8-877a-be0ac7bbd306",
+		"name": "VaccineCard-Vaccines",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45430111-77323dac-e416-49f8-877a-be0ac7bbd306?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create vaccines",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"vaccines_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rabia\",\r\n    \"brandName\": \"Pfizer\",\r\n    \"nextDate\": \"2025-06-01T00:00:00-05:00\",\r\n    \"dosis\": 1.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vaccines",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccines"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create vaccines",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rabia\",\r\n    \"brandName\": \"Pfizer\",\r\n    \"nextDate\": \"2025-06-01T00:00:00-05:00\",\r\n    \"dosis\": 1.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vaccines",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccines"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Rabia\",\n    \"brandName\": \"Pfizer\",\n    \"nextDate\": \"2025-06-01T00:00:00-05:00\",\n    \"dosis\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "add a vaccine to a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines",
+						"{{vaccines_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a vaccine to a vaccine card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines",
+								"{{vaccines_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Rabia\",\r\n    \"brandName\": \"Pfizer\",\r\n    \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n    \"dosis\": 1.0,\r\n    \"vaccineCard\": {\r\n        \"id\": 2,\r\n        \"lastVacineDate\": \"2025-06-01T00:00:00-05:00\",\r\n        \"lastDewormingDate\": \"2025-05-15T00:00:00-05:00\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "add a non-existent vaccine to a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Vaccine card not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a non-existent vaccine to a vaccine card",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The vaccine with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get a vaccine from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines",
+						"{{vaccines_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a vaccine from a vaccine card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines",
+								"{{vaccines_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Rabia\",\n    \"brandName\": \"Pfizer\",\n    \"nextDate\": \"2025-07-01T00:00:00-05:00\",\n    \"dosis\": 1,\n    \"vaccineCard\": {\n        \"id\": 2,\n        \"lastVacineDate\": \"2025-06-01T00:00:00-05:00\",\n        \"lastDewormingDate\": \"2025-05-15T00:00:00-05:00\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get a vaccine that does not exist from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(412);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"In this vaccine card, vaccine not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a vaccine that does not exist from a vaccine card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The vaccine with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get the vaccines from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of vaccine > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccine-cards",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccine-cards"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get the vaccines from a vaccine card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccine-cards",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccine-cards"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Rabia\",\n    \"brandName\": \"Pfizer\",\n    \"nextDate\": \"2025-07-01T00:00:00-05:00\",\n    \"dosis\": 1,\n    \"vaccineCard\": {\n        \"id\": 2,\n        \"lastVacineDate\": \"2025-06-01T00:00:00-05:00\",\n        \"lastDewormingDate\": \"2025-05-15T00:00:00-05:00\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get a vaccine that is not associated with a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(412);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"The vaccine is not associated to the vaccine card\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines",
+						"{{vaccines_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a vaccine that is not associated with a vaccine card",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines",
+								"{{vaccines_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The vaccine with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "associate vaccines with a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": {{new_id_v1}},\r\n        \"name\": \"Rabia\",\r\n        \"brandName\": \"Pfizer\",\r\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n        \"dosis\": 1.0\r\n    },\r\n    {\r\n        \"id\": {{new_id_v2}},\r\n        \"name\": \"Parvovirus\",\r\n        \"brandName\": \"Zoetis\",\r\n        \"nextDate\": \"2025-08-15T00:00:00-05:00\",\r\n        \"dosis\": 0.5\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines",
+						"{{vaccines_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "associate vaccines with a vaccine card",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": {{new_id_v1}},\r\n        \"name\": \"Rabia\",\r\n        \"brandName\": \"Pfizer\",\r\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n        \"dosis\": 1.0\r\n    },\r\n    {\r\n        \"id\": {{new_id_v2}},\r\n        \"name\": \"Parvovirus\",\r\n        \"brandName\": \"Zoetis\",\r\n        \"nextDate\": \"2025-08-15T00:00:00-05:00\",\r\n        \"dosis\": 0.5\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines",
+								"{{vaccines_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Rabia\",\n        \"brandName\": \"Pfizer\",\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\n        \"dosis\": 1\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Parvovirus\",\n        \"brandName\": \"Zoetis\",\n        \"nextDate\": \"2025-08-15T00:00:00-05:00\",\n        \"dosis\": 0.5\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "associate vaccines that do not exist with a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Failed to update, not found vaccine card with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"name\": \"Rabia\",\r\n        \"brandName\": \"Pfizer\",\r\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n        \"dosis\": 1.0,\r\n        \"id\": 0\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "associate vaccines that do not exist with a vaccine card",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"Rabia\",\r\n        \"brandName\": \"Pfizer\",\r\n        \"nextDate\": \"2025-07-01T00:00:00-05:00\",\r\n        \"dosis\": 1.0,\r\n        \"id\": 0\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:25:21\",\r\n\r\n        \"message\": \"The vaccine with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "delete a vaccine from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines",
+						"{{vaccines_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a vaccine from a vaccine card",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/{{vaccines_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines",
+								"{{vaccines_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a vaccine from a vaccine card that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Vaccine card not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/0/vaccines/{{vaccines_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"0",
+						"vaccines",
+						"{{vaccines_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a vaccine from a vaccine card that does not exist",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/0/vaccines/{{vaccines_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"0",
+								"vaccines",
+								"{{vaccines_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "delete a non-existent vaccine from a vaccine card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"In this vaccine card, vaccine not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccine-cards",
+						"{{vaccineCards_id}}",
+						"vaccines",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a non-existent vaccine from a vaccine card",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccine-cards/{{vaccineCards_id}}/vaccines/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccine-cards",
+								"{{vaccineCards_id}}",
+								"vaccines",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a vaccine",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rabia\",\r\n    \"brandName\": \"Pfizer\",\r\n    \"nextDate\": \"2025-06-01T00:00:00-05:00\",\r\n    \"dosis\": 1.0\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vaccines/{{vaccines_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vaccines",
+						"{{vaccines_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a vaccine",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vaccines/{{vaccines_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vaccines",
+								"{{vaccines_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		}
+	]
+}

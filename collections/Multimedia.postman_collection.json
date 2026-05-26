@@ -1,0 +1,478 @@
+{
+	"info": {
+		"_postman_id": "8f70320f-f282-4868-a0db-b5df572b91be",
+		"name": "Multimedia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45430111-8f70320f-f282-4868-a0db-b5df572b91be?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create multimedia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\": \"https://example.com/video1.mp4\",\r\n    \"description\": \"Video de entrenamiento\",\r\n    \"type\": \"VIDEO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/multimedia",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"multimedia"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "crear multimedia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"https://example.com/video1.mp4\",\r\n    \"description\": \"Video de entrenamiento\",\r\n    \"tipo\": \"VIDEO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/multimedia",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"multimedia"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"id\": 3,\r\n  \"url\": \"https://example.com/video1.mp4\",\r\n  \"description\": \"Video de entrenamiento\",\r\n  \"tipo\": \"VIDEO\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get all the multimedia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/multimedia",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"multimedia"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "obtener toda la multimedia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/multimedia",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"multimedia"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\r\n  {\r\n    \"id\": 1,\r\n    \"url\": \"https://example.com/image1.jpg\",\r\n    \"description\": \"Imagen de la mascota\",\r\n    \"tipo\": \"IMAGE\"\r\n  },\r\n  {\r\n    \"id\": 2,\r\n    \"url\": \"https://example.com/audio1.mp3\",\r\n    \"description\": \"Sonido de ladrido\",\r\n    \"tipo\": \"AUDIO\"\r\n  }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "get a multimedia file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/multimedia/{{multimedia_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"multimedia",
+						"{{multimedia_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "obtener un archivo multimedia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/multimedia/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"multimedia",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"id\": 1,\r\n  \"url\": \"https://example.com/image1.jpg\",\r\n  \"description\": \"Imagen de la mascota\",\r\n  \"tipo\": \"IMAGE\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get non-existent multimedia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/multimedia/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"multimedia",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "obtener multimedia inexistente",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/multimedia/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"multimedia",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"apierror\": {\r\n    \"status\": \"NOT_FOUND\",\r\n    \"timestamp\": \"2025-06-09 10:35:20\",\r\n    \"message\": \"The multimedia with the given id was not found\"\r\n  }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "update multimedia",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"url\": \"https://upload.wikimedia.org/updated_image.jpg\",\r\n  \"type\": \"IMAGE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/multimedia/{{multimedia_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"multimedia",
+						"{{multimedia_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "actualizar multimedia",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"url\": \"https://upload.wikimedia.org/updated_image.jpg\",\r\n  \"type\": \"IMAGE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/multimedia/{{multimedia_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"multimedia",
+								"{{multimedia_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"url\": \"https://upload.wikimedia.org/updated_image.jpg\",\n    \"type\": \"IMAGE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "update non-existent multimedia",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"url\": \"https://example.com/video_actualizado.mp4\",\r\n  \"description\": \"Video actualizado\",\r\n  \"tipo\": \"VIDEO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/multimedia/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"multimedia",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "actualizar multimedia existente",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"url\": \"https://example.com/video_actualizado.mp4\",\r\n  \"description\": \"Video actualizado\",\r\n  \"tipo\": \"VIDEO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/multimedia/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"multimedia",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"apierror\": {\r\n    \"status\": \"NOT_FOUND\",\r\n    \"timestamp\": \"2025-06-09 10:37:44\",\r\n    \"message\": \"The multimedia with the given id was not found\"\r\n  }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "delete a multimedia file",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/multimedia/{{multimedia_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"multimedia",
+						"{{multimedia_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "eliminar un archivo multimedia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/multimedia/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"multimedia",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete non-existent media",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/multimedia/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"multimedia",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "borrar multimedia inexistente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/multimedia/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"multimedia",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"apierror\": {\r\n    \"status\": \"NOT_FOUND\",\r\n    \"timestamp\": \"2025-06-09 10:38:57\",\r\n    \"message\": \"The multimedia with the given id was not found\"\r\n  }\r\n}"
+				}
+			]
+		}
+	]
+}

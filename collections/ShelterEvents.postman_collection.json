@@ -1,0 +1,679 @@
+{
+	"info": {
+		"_postman_id": "dd646313-564f-4b25-ba1a-ad3bd0f7b21d",
+		"name": "ShelterEvents",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/42241202-dd646313-564f-4b25-ba1a-ad3bd0f7b21d?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create a Shelter Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"shelter_arrival_id\" , data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Event name\",\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description\",\r\n    \"shelter\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create a Shelter Event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Event name\",\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description\",\r\n    \"shelter\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"Event name\",\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description\",\r\n    \"shelter\" : {\r\n        \"id\" : 1\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "modify a Shelter Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description modified\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events/{{shelter_event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events",
+						"{{shelter_event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "modify a Shelter Event",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description modified\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events/{{shelter_event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events",
+								"{{shelter_event_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\" : 1,\n    \"name\" : \"Event name\",\n    \"date\" : \"2025-05-26\",\n    \"description\" : \"Event description modified\",\n    \"shelter\" : {\n        \"id\" : 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "modify a non-exist Shelter Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description modified\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "modify a non-exist Shelter Event",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description modified\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:03:45\",\n        \"message\": \"The shelter event with the specified ID was not found.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get all Shelter Events",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of shelter events > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all Shelter Events",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\r\n    {\r\n        \"id\": 101,\r\n        \"name\": \"Jornada de Adopción de Verano\",\r\n        \"date\": \"2025-05-26\",\r\n        \"description\": \"Gran evento anual de adopción en el parque central.\",\r\n        \"shelter\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    {\r\n        \"id\": 102,\r\n        \"name\": \"Campaña de Vacunación Gratuita\",\r\n        \"date\": \"2025-06-01\",\r\n        \"description\": \"Vacunación antirrábica y desparasitación para mascotas de la comunidad.\",\r\n        \"shelter\": {\r\n            \"id\": 2\r\n        }\r\n    },\r\n    {\r\n        \"id\": 103,\r\n        \"name\": \"Noche de Gala Benéfica\",\r\n        \"date\": \"2025-06-15\",\r\n        \"description\": \"Recaudación de fondos para mejorar las instalaciones del refugio.\",\r\n        \"shelter\": {\r\n            \"id\": 1\r\n        }\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "get a Shelter Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events/{{shelter_event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events",
+						"{{shelter_event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a Shelter Event",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events/{{shelter_event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events",
+								"{{shelter_event_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 101,\n    \"name\": \"Jornada de Adopción de Verano\",\n    \"date\": \"2025-05-26\",\n    \"description\": \"Gran evento anual de adopción en el parque central.\",\n    \"shelter\": {\n        \"id\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get a non-exist Shelter Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a non-exist Shelter Event",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:03:50\",\n        \"message\": \"Shelter event record does not exist for the provided identifier.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Shelter Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events/{{shelter_event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events",
+						"{{shelter_event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Shelter Event",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events/{{shelter_event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events",
+								"{{shelter_event_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "remove a non-exist Shelter Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a non-exist Shelter Event",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:03:55\",\n        \"message\": \"No event found under that ID in our shelter registry.\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "new_shelter_id_1",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

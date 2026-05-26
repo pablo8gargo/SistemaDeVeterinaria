@@ -1,0 +1,676 @@
+{
+	"info": {
+		"_postman_id": "373295e1-a5eb-4a2c-9e4f-6940ac90d92c",
+		"name": "Owners",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45283390-373295e1-a5eb-4a2c-9e4f-6940ac90d92c?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "Create owner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"pm.globals.set(\"owner_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains owner data\", function() {\r",
+							"    pm.expect(data.firstName).to.be.a('string');\r",
+							"    pm.expect(data.lastName).to.be.a('string');\r",
+							"    pm.expect(data.email).to.match(/^.+@.+\\..+$/);\r",
+							"    pm.expect(data.houseType).to.be.oneOf([\"APARTMENT\", \"HOUSE\", \"FARM\"]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Juan\",\r\n    \"lastName\": \"Pérez\",\r\n    \"email\": \"juan.perez@example.com\",\r\n    \"phoneNumber\": \"+573001234567\",\r\n    \"address\": \"Calle 123 #45-67\",\r\n    \"houseType\": \"APARTMENT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/owners",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"owners"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create owner",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Juan\",\r\n    \"lastName\": \"Pérez\",\r\n    \"email\": \"juan.perez@example.com\",\r\n    \"phone\": \"+573001234567\",\r\n    \"address\": \"Calle 123 #45-67\",\r\n    \"houseType\": \"APARTMENT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/owners",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"firstName\": \"Juan\",\r\n    \"lastName\": \"Pérez\",\r\n    \"email\": \"juan.perez@example.com\",\r\n    \"phone\": \"+573001234567\",\r\n    \"address\": \"Calle 123 #45-67\",\r\n    \"houseType\": \"APARTMENT\",\r\n    \"createdAt\": \"2023-11-15T10:00:00Z\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all Owner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of owners > 0', function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.length).to.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/owners",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"owners"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all Owner",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/owners",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"firstName\": \"Juan\",\n        \"lastName\": \"Pérez\",\n        \"email\": \"juan.perez@example.com\",\n        \"phone\": \"+573001234567\",\n        \"address\": \"Calle 123 #45-67\",\n        \"houseType\": \"APARTMENT\",\n        \"pets\": [\n            {\n                \"id\": 1,\n                \"name\": \"Max\",\n                \"breed\": \"Golden Retriever\"\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get one owner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Owner ID matches\", function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.id).to.eql(pm.globals.get(\"owner_id\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/owners/{{owner_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"owners",
+						"{{owner_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get one owner",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/owners/{{owner_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners",
+								"{{owner_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"firstName\": \"Juan\",\n    \"lastName\": \"Pérez\",\n    \"email\": \"juan.perez@example.com\",\n    \"phone\": \"+573001234567\",\n    \"address\": \"Calle 123 #45-67\",\n    \"houseType\": \"APARTMENT\",\n    \"pets\": [\n        {\n            \"id\": 1,\n            \"name\": \"Max\",\n            \"breed\": \"Golden Retriever\",\n            \"size\": \"MEDIUM\"\n        }\n    ],\n    \"createdAt\": \"2023-11-15T10:00:00Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una owner que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Error message is correct\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Owner not found with ID: \");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/owners/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"owners",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una mascota que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/owners/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"2023-11-15T10:05:00Z\",\n        \"message\": \"Owner not found with id: 0\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a owner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Data was updated\", function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.firstName).to.eql(\"NombreActualizado\");\r",
+							"    pm.expect(data.houseType).to.eql(\"HOUSE\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Juan Carlos\",\r\n    \"lastName\": \"Pérez\",\r\n    \"email\": \"juan.c.perez@example.com\",\r\n    \"phoneNumber\": \"+573001234568\",\r\n    \"address\": \"Calle 123 #45-67, Apto 301\",\r\n    \"houseType\": \"APARTMENT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/owners/{{owner_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"owners",
+						"{{owner_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update a owner",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Juan Carlos\",\r\n    \"lastName\": \"Pérez\",\r\n    \"email\": \"juan.c.perez@example.com\",\r\n    \"phone\": \"+573001234568\",\r\n    \"address\": \"Calle 123 #45-67, Apto 301\",\r\n    \"houseType\": \"APARTMENT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/owners/{{owner_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners",
+								"{{owner_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"firstName\": \"Juan Carlos\",\n    \"lastName\": \"Pérez\",\n    \"email\": \"juan.c.perez@example.com\",\n    \"phone\": \"+573001234568\",\n    \"address\": \"Calle 123 #45-67, Apto 301\",\n    \"houseType\": \"APARTMENT\",\n    \"createdAt\": \"2023-11-15T10:00:00Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una persona que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Juan Carlos\",\r\n    \"lastName\": \"Pérez\",\r\n    \"email\": \"juan.c.perez@example.com\",\r\n    \"phoneNumber\": \"+573001234568\",\r\n    \"address\": \"Calle 123 #45-67, Apto 301\",\r\n    \"houseType\": \"APARTMENT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/owners/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"owners",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar una persona que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/owners/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"2023-11-15T10:08:00Z\",\n        \"message\": \"Owner not found with id: 0\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a owner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/owners/{{owner_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"owners",
+						"{{owner_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a owner",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/owners/{{owner_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners",
+								"{{owner_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Eliminar una persona que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/owners/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"owners",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar una persona que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/owners/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"2023-11-15T10:10:00Z\",\n        \"message\": \"Owner not found with id: 0\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

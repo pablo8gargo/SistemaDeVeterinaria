@@ -1,0 +1,1147 @@
+{
+	"info": {
+		"_postman_id": "d11fb361-148d-43c1-b267-72d13ece3eea",
+		"name": "Shelter - ShelterEvents",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/42241202-d11fb361-148d-43c1-b267-72d13ece3eea?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create a Shelter Event Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"shelter_arrival_id\" , data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Event name\",\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description\",\r\n    \"shelter\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create a Shelter Event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Event name\",\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description\",\r\n    \"shelter\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"Event name\",\r\n    \"date\" : \"2025-05-26\",\r\n    \"description\" : \"Event description\",\r\n    \"shelter\" : {\r\n        \"id\" : 1\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "create shelter Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"shelter_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelters",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create shelter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "add a Shelter Event to Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/{{shelter_event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events",
+						"{{shelter_event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a Shelter Event to Shelter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/{{shelter_event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								"{{shelter_event_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Refugio Esperanza\",\n    \"address\": \"Calle 123 #45-67, Bogotá\",\n    \"phone\": \"+57 321 6549870\",\n    \"email\": \"contacto@refugioesperanza.org\",\n    \"shelterEvents\": [\n        {\n            \"id\": 305,\n            \"name\": \"Feria de Salud Animal\",\n            \"date\": \"2025-08-10\",\n            \"description\": \"Chequeos, vacunas y desparasitación.\"\n        }\n    ],\n    \"pets\": [\n        \n    ],\n    \"shelterArrivals\": [\n\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "add a  non-exist Shelter Event to Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a  non-exist Shelter Event to Shelter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:03:37\",\n        \"message\": \"The referenced shelter event to add was not found.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "set Shelter Events to Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": {{new_event_id_1}},\r\n    \"name\": \"Jornada de Adopción de Mascotas\",\r\n    \"date\": \"2025-06-15\",\r\n    \"description\": \"Ven a conocer a nuestros adorables animales en busca de un hogar.\",\r\n    \"shelter\" : {\r\n        \"id\" : {{shelter_id}}\r\n    }\r\n  },\r\n  {\r\n    \"id\": {{new_event_id_2}},\r\n    \"name\": \"Limpieza del Refugio\",\r\n    \"date\": \"2025-06-20\",\r\n    \"description\": \"Necesitamos voluntarios para ayudar a limpiar las instalaciones.\",\r\n    \"shelter\" : {\r\n        \"id\" : {{shelter_id}}\r\n    }\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "set Shelter Events to Shelter",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 301,\r\n        \"name\": \"Jornada de Adopción de Primavera\",\r\n        \"date\": \"2025-04-15\",\r\n        \"description\": \"Evento para encontrar hogares para cachorros y gatitos.\",\r\n        \"shelter\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    {\r\n        \"id\": 302,\r\n        \"name\": \"Clínica Veterinaria Móvil\",\r\n        \"date\": \"2025-05-01\",\r\n        \"description\": \"Servicios de salud animal a bajo costo en el barrio.\",\r\n        \"shelter\": {\r\n            \"id\": 1\r\n        }\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 301,\n        \"name\": \"Jornada de Adopción de Primavera\",\n        \"date\": \"2025-04-15\",\n        \"description\": \"Evento para encontrar hogares para cachorros y gatitos.\",\n        \"shelter\": {\n            \"id\": 1,\n            \"name\": \"Refugio Esperanza\",\n            \"address\": \"Calle 123 #45-67, Bogotá\",\n            \"phone\": \"+57 321 6549870\",\n            \"email\": \"contacto@refugioesperanza.org\"\n        }\n    },\n    {\n        \"id\": 302,\n        \"name\": \"Clínica Veterinaria Móvil\",\n        \"date\": \"2025-05-01\",\n        \"description\": \"Servicios de salud animal a bajo costo en el barrio.\",\n        \"shelter\": {\n            \"id\": 1,\n            \"name\": \"Refugio Esperanza\",\n            \"address\": \"Calle 123 #45-67, Bogotá\",\n            \"phone\": \"+57 321 6549870\",\n            \"email\": \"contacto@refugioesperanza.org\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "set non-exist Shelter Events to Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Failed to update, not found shelter event with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": 0,\r\n    \"name\": \"Jornada de Adopción de Mascotas\",\r\n    \"date\": \"2025-06-15\",\r\n    \"description\": \"Ven a conocer a nuestros adorables animales en busca de un hogar.\",\r\n    \"shelter\" : {\r\n        \"id\" : {{shelter_id}}\r\n    }\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "set non-exist Shelter Events to Shelter",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 0,\r\n    \"name\": \"Jornada de Adopción de Mascotas\",\r\n    \"date\": \"2025-06-15\",\r\n    \"description\": \"Ven a conocer a nuestros adorables animales en busca de un hogar.\",\r\n    \"shelter\" : {\r\n        \"id\" : {{shelter_id}}\r\n    }\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:06:16\",\n        \"message\": \"The shelter events with the given ids was not found for this shelter.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get all Shelter Event from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of events > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all Shelter Event from Shelter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 301,\n        \"name\": \"Jornada de Adopción de Primavera\",\n        \"date\": \"2025-04-15\",\n        \"description\": \"Evento para encontrar hogares para cachorros y gatitos.\",\n        \"shelter\": {\n            \"id\": 1,\n            \"name\": \"Refugio Esperanza\",\n            \"address\": \"Calle 123 #45-67, Bogotá\",\n            \"phone\": \"+57 321 6549870\",\n            \"email\": \"contacto@refugioesperanza.org\"\n        }\n    },\n    {\n        \"id\": 302,\n        \"name\": \"Clínica Veterinaria Móvil\",\n        \"date\": \"2025-05-01\",\n        \"description\": \"Servicios de salud animal a bajo costo en el barrio.\",\n        \"shelter\": {\n            \"id\": 1,\n            \"name\": \"Refugio Esperanza\",\n            \"address\": \"Calle 123 #45-67, Bogotá\",\n            \"phone\": \"+57 321 6549870\",\n            \"email\": \"contacto@refugioesperanza.org\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get a Shelter Event from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/{{shelter_event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events",
+						"{{shelter_event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a Shelter Event from Shelter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/{{shelter_event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								"{{shelter_event_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 302,\n    \"name\": \"Clínica Veterinaria Móvil\",\n    \"date\": \"2025-05-01\",\n    \"description\": \"Servicios de salud animal a bajo costo en el barrio.\",\n    \"shelter\": {\n        \"id\": 1,\n        \"name\": \"Refugio Esperanza\",\n        \"address\": \"Calle 123 #45-67, Bogotá\",\n        \"phone\": \"+57 321 6549870\",\n        \"email\": \"contacto@refugioesperanza.org\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get a non-exist Shelter Event from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {   \r",
+							"    pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a non-exist Shelter Event from Shelter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:08:30\",\n        \"message\": \"The shelter event with the given id was not found for this shelter.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Shelter Event from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/{{shelter_event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events",
+						"{{shelter_event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Shelter Event from Shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/{{shelter_event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								"{{shelter_event_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "remove a non-exist Shelter Event from Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter event not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}",
+						"events",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a non-exist Shelter Event from Shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/{{shelter_id}}/events/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"{{shelter_id}}",
+								"events",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"09-06-2025 19:08:53\",\n        \"message\": \"The shelter event with the given id was not found for this shelter.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Shelter Event from non-exist Shelter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(412);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"Shelter not found with ID: \");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/0/events/{{shelter_event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"0",
+						"events",
+						"{{shelter_event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Shelter Event from non-exist Shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelters/0/events/{{shelter_event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelters",
+								"0",
+								"events",
+								"{{shelter_event_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"09-06-2025 19:08:53\",\r\n        \"message\": \"The shelter with the given id was not found.\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "remove a Shelter Event Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{password}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/shelter-events/{{shelter_event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelter-events",
+						"{{shelter_event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove a Shelter Event",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/shelter-events/{{shelter_event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"shelter-events",
+								"{{shelter_event_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a shelter Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shelters/{{shelter_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shelters",
+						"{{shelter_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a shelter",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shelter/{id_shelter}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shelter",
+								"{id_shelter}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "new_shelter_id_1",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "new_event_id_1",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "new_event_id_2",
+			"value": "2",
+			"type": "default"
+		}
+	]
+}

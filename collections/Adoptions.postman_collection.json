@@ -1,0 +1,645 @@
+{
+	"info": {
+		"_postman_id": "3cf7cd7e-079b-4eb1-b544-0a1f4cfbc3b5",
+		"name": "Adoptions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45430111-3cf7cd7e-079b-4eb1-b544-0a1f4cfbc3b5?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create adoption",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"adoption_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(201);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2024-12-05\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"PENDING\",\r\n    \"owner\": {\r\n        \"id\": 1\r\n    },\r\n    \"veterinarian\": {\r\n        \"id\": 1\r\n    },\r\n    \"pet\": {\r\n        \"id\": 1\r\n    },\r\n    \"adoptionApplication\": {\r\n        \"id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/adoptions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create adoption",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"05/12/2024\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"DONE\",\r\n    \"owner\": \"Pedro muñoz\",\r\n    \"veterinarian\": \"Francisco marin\",\r\n    \"pet\": \"pacho\",\r\n    \"adoptionApplication\": \"APPROVED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/adoptions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoptions"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\":1,\r\n    \"date\":\"05/12/2024\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"DONE\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get all adoptions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of veterinarian > ' + 0, function () {\r",
+							"\r",
+							"   var data = pm.response.json()\r",
+							"\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoptions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all adoptions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/adoptions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoptions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"APPROVED\",\r\n    \"owner\": null,\r\n    \"veterinarian\": null,\r\n    \"pet\": null,\r\n    \"adoptionApplication\": null\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get an adoption",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoptions/{{adoption_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions",
+						"{{adoption_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a veterinarian",
+					"originalRequest": {
+						"method": "GET",
+						"header": []
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"description\": \"Adopción de mascota senior\",\n    \"observations\": \"Proceso sin inconvenientes\",\n    \"adoptionStatus\": \"APPROVED\",\n    \"owner\": null,\n    \"veterinarian\": null,\n    \"pet\": null,\n    \"adoptionApplication\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "get an adoption that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"The adoption with the given id was not found\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoptions/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a veterinarian that does not exist",
+					"originalRequest": {
+						"method": "GET",
+						"header": []
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"22-05-2025 10:01:09\",\n        \"message\": \"The adoption with the given id was not found\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "update an adoption",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(200);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"id\":{{adoption_id}},\r\n    \"date\": \"2024-12-05\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"PENDING\",\r\n    \"owner\": {\r\n        \"id\": 1\r\n    },\r\n    \"veterinarian\": {\r\n        \"id\": 1\r\n    },\r\n    \"pet\": {\r\n        \"id\": 1\r\n    },\r\n    \"adoptionApplication\": {\r\n        \"id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/adoptions/{{adoption_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions",
+						"{{adoption_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update a veterinarian",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"05/12/2024\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"DONE\",\r\n    \"owner\": \"Pedro muñoz\",\r\n    \"veterinarian\": \"Francisco marin\",\r\n    \"pet\": \"pacheco\", //atributo modificado \r\n    \"adoptionApplication\": \"APPROVED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/adoptions/{id_adoption}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoptions",
+								"{id_adoption}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\":1,\r\n    \"date\":\"05/12/2024\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"DONE\",\r\n    \"owner\": \"Pedro muñoz\",\r\n    \"veterinarian\": \"Francisco marin\",\r\n    \"pet\": \"pacheco\", \r\n    \"adoptionApplication\": \"APPROVED\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "update an adoption that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"The adoption with the given id was not found\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"id\":0,\r\n    \"date\": \"2024-12-05\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"PENDING\",\r\n    \"owner\": {\r\n        \"id\": 1\r\n    },\r\n    \"veterinarian\": {\r\n        \"id\": 1\r\n    },\r\n    \"pet\": {\r\n        \"id\": 1\r\n    },\r\n    \"adoptionApplication\": {\r\n        \"id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/adoptions/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update an adoption that does not exist",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"date\":\"05/12/2024\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"DONE\",\r\n    \"owner\": \"Pedro muñoz\",\r\n    \"veterinarian\": \"Francisco marin\",\r\n    \"pet\": \"maurico\",  //no existe\r\n    \"adoptionApplication\": \"APPROVED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/adoptions/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoptions",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"22-05-2025 10:04:10\",\r\n\r\n        \"message\": \"The adoption with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "delete an adoption",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(204);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoptions/{{adoption_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions",
+						"{{adoption_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete an adoption",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/adoptions/{id_adoption}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoptions",
+								"{id_adoption}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete an adoption that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"   pm.response.to.have.status(404);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"\r",
+							"   var data = pm.response.json();\r",
+							"\r",
+							"   pm.expect(data.apierror.message).to.contains(\"The adoption with the given id was not found\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/adoptions/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete an adoption that does not exist",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Refugio Esperanza\",\r\n    \"address\": \"Calle 123 #45-67, Bogotá\",\r\n    \"phone\": \"+57 321 6549870\",\r\n    \"email\": \"contacto@refugioesperanza.org\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/adoptions/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoptions",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"22-05-2025 10:04:10\",\r\n\r\n        \"message\": \"The adoption with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "new_adoption_id",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

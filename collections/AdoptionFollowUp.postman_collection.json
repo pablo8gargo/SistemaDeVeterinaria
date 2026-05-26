@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "439469bf-45c7-4cce-9b26-68c874a17002",
+		"name": "AdoptionFollowUp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45430111-439469bf-45c7-4cce-9b26-68c874a17002?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create an adoption follow up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"date\": \"2025-06-01\",\r\n  \"notes\": \"La mascota se encuentra bien, el adoptante está cumpliendo con las recomendaciones.\",\r\n  \"adoptionId\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/adoption-follow-ups",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption-follow-ups"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "crear un seguimiento de adopción",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-06-01\",\r\n  \"notes\": \"La mascota se encuentra bien, el adoptante está cumpliendo con las recomendaciones.\",\r\n  \"adoptionId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/adoption-follow-ups",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoption-follow-ups"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"id\": 1,\r\n  \"date\": \"2025-06-01\",\r\n  \"notes\": \"La mascota se encuentra bien, el adoptante está cumpliendo con las recomendaciones.\",\r\n  \"adoptionId\": 3\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get an adoption follow up",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoption-follow-ups/{{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption-follow-ups",
+						"{{id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "obtener un seguimiento de adopción",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/adoption-follow-ups/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoption-follow-ups",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"id\": 1,\r\n  \"date\": \"2025-06-01\",\r\n  \"notes\": \"La mascota se encuentra bien, el adoptante está cumpliendo con las recomendaciones.\",\r\n  \"adoptionId\": 3\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get all adoption follow up",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoption-follow-ups",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption-follow-ups"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all adoption follow up",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/adoption-follow-ups",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoption-follow-ups"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"date\": \"2025-06-02\",\n        \"notes\": \"Actualización: se realizó una segunda visita y todo sigue en orden.\",\n        \"adoptionId\": 3\n    },\n    {\n        \"id\": 2,\n        \"date\": \"2025-06-05\",\n        \"notes\": \"La mascota ha sido esterilizada y se encuentra recuperándose.\",\n        \"adoptionId\": 4\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "getting a non-existent follow-up",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoption-follow-ups/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption-follow-ups",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "getting a non-existent follow-up",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/adoption-follow-ups/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoption-follow-ups",
+								"0"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"apierror\": {\r\n    \"status\": \"NOT_FOUND\",\r\n    \"timestamp\": \"2025-06-09 12:00:00\",\r\n    \"message\": \"The adoption follow-up with the given id was not found\"\r\n  }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "update an adoption follow up",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"date\": \"2025-06-02\",\r\n  \"notes\": \"Actualización: se realizó una segunda visita y todo sigue en orden.\",\r\n  \"adoptionId\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/adoption-follow-ups/{{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption-follow-ups",
+						"{{id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update an adoption follow up",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-06-02\",\r\n  \"notes\": \"Actualización: se realizó una segunda visita y todo sigue en orden.\",\r\n  \"adoptionId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/adoption-follow-ups/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoption-follow-ups",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"id\": 1,\r\n  \"date\": \"2025-06-02\",\r\n  \"notes\": \"Actualización: se realizó una segunda visita y todo sigue en orden.\",\r\n  \"adoptionId\": 3\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update an adoption follow up that does not exist",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"date\": \"2025-06-03\",\r\n  \"notes\": \"Intento de actualizar seguimiento inexistente.\",\r\n  \"adoptionId\": 99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/adoption-follow-ups/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption-follow-ups",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update an adoption follow up that does not exist",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-06-03\",\r\n  \"notes\": \"Intento de actualizar seguimiento inexistente.\",\r\n  \"adoptionId\": 99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/adoption-follow-ups/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoption-follow-ups",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"2025-06-09 12:00:00\",\n        \"message\": \"The adoption follow-up with the given id was not found\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "delete an adoption follow up",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoption-follow-ups/{{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption-follow-ups",
+						"{{id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete an adoption follow up",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/adoption-follow-ups/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoption-follow-ups",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete an adoption follow up that doesn't exist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoption-follow-ups/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption-follow-ups",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete an adoption follow up that doesn't exist",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/adoption-follow-ups/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoption-follow-ups",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"apierror\": {\r\n    \"status\": \"NOT_FOUND\",\r\n    \"timestamp\": \"2025-06-09 12:00:00\",\r\n    \"message\": \"The adoption follow-up with the given id was not found\"\r\n  }\r\n}"
+				}
+			]
+		}
+	]
+}

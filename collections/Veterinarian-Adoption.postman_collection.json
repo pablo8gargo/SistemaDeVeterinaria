@@ -1,0 +1,889 @@
+{
+	"info": {
+		"_postman_id": "9e19644f-d5ab-4196-a73c-7b268b1bacdd",
+		"name": "Veterinarian-Adoption",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42241202",
+		"_collection_link": "https://adopcionmascotas.postman.co/workspace/Modelos~20799a28-f585-4809-a05b-57a15dc87fe6/collection/45430111-9e19644f-d5ab-4196-a73c-7b268b1bacdd?action=share&source=collection_link&creator=42241202"
+	},
+	"item": [
+		{
+			"name": "create adoption",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\":\"05/12/2024\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"DONE\",\r\n    \"owner\" : {\r\n        \"id\" : {{owner_id}}\r\n    },\r\n    \"veterinarian\" : {\r\n        \"id\" : {{vet_id}}\r\n    },\r\n    \"pet\" : {\r\n        \"id\" : {{pet_id}}\r\n    },\r\n    \"adoptionApplication\" : {\r\n        \"id\" : {{adoptionAplication_id}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/adoption",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoption"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create adoption",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"05/12/2024\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"DONE\",\r\n    \"owner\": \"Pedro muñoz\",\r\n    \"veterinarian\": \"Francisco marin\",\r\n    \"pet\": \"pacho\",\r\n    \"adoptionApplication\": \"APPROVED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/adoptions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoptions"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\":1,\r\n    \"date\":\"05/12/2024\",\r\n    \"description\": \"Adopción de mascota senior\",\r\n    \"observations\": \"Proceso sin inconvenientes\",\r\n    \"adoptionStatus\": \"DONE\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "create veterinarian",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"firstName\": \"Gabriel\",\r\n    \"lastName\": \"Muñoz Martinez\",\r\n    \"email\": \"gabriel.martinez@example.com\",\r\n    \"phoneNumber\": \"+57 123 4567890\",\r\n    \"licenseNumber\": \"123456789\",\r\n    \"speciality\": \"INTERNAL_MEDICINE\"\r\n    \r\n    \r\n\r\n    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create veterinarian",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"firstName\": \"Gabriel\",\r\n    \"lastName\": \"Muñoz Martinez\",\r\n    \"email\": \"gabriel.martinez@example.com\",\r\n    \"phoneNumber\": \"+57 123 4567890\",\r\n    \"licenseNumber\": \"123456789\",\r\n    \"speciality\": \"INTERNAL_MEDICINE\"\r\n    \r\n        \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"firstName\": \"Gabriel\",\n    \"lastName\": \"Muñoz Martinez\",\n    \"email\": \"gabriel.martinez@example.com\",\n    \"phoneNumber\": \"+57 123 4567890\",\n    \"licenseNumber\": \"123456789\",\n    \"speciality\": \"INTERNAL_MEDICINE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add an adoption to a vet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/{{adoption_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption",
+						"{{adoption_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add an adoption to a vet",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/{id_1_adoption}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption",
+								"{id_1_adoption}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"description\": \"Adopción de mascota senior\",\n    \"observations\": \"Proceso completado exitosamente. La mascota se encuentra en excelente estado.\",\n    \"adoptionStatus\": \"APPROVED\",\n\n    \"veterinarian\": {\n        \"id\": 2,\n        \"licenseNumber\": \"123456789\",\n        \"speciality\": \"Medicina Interna\",\n        \"firstName\": \"Dr. Gabriel\",\n        \"lastName\": \"García\",\n        \"email\": \"gabriel.garcia@veterinaria.com\",\n        \"phoneNumber\": \"+57 987 6543210\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "add a non-existent adoption to a veterinarian",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add a non-existent adoption to a veterinarian",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n\r\n        \"message\": \"The adoption with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get an adoption from a veterinarian",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/{{adoption_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption",
+						"{{adoption_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get an adoption from a veterinarian",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/{{adoption_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption",
+								"{{adoption_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"description\": \"Adopción de mascota senior\",\n    \"observations\": \"Proceso completado exitosamente. La mascota se encuentra en excelente estado.\",\n    \"adoptionStatus\": \"APPROVED\",\n    \"veterinarian\": {\n        \"id\": 2,\n        \"licenseNumber\": \"123456789\",\n        \"speciality\": \"Medicina Interna\",\n        \"firstName\": \"Dr. Gabriel\",\n        \"lastName\": \"García\",\n        \"email\": \"gabriel.garcia@veterinaria.com\",\n        \"phoneNumber\": \"+57 987 6543210\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get a non-existent adoption from a veterinarian",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get a non-existent adoption from a veterinarian",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:17:39\",\r\n\r\n        \"message\": \"The adoption with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get an adoption that is not associated with a veterinarian",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/{{adoption_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption",
+						"{{adoption_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get an adoption that is not associated with a veterinarian",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/{{adoption_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption",
+								"{{adoption_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"PRECONDITION_FAILED\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:19:03\",\r\n\r\n        \"message\": \"The adoption is not associated to the veterinarian\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get adoptions from a veterinarian",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/veterinarians",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"veterinarians"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get adoptions from a veterinarian",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/veterinarians",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"veterinarians"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"description\": \"Adopción de mascota senior\",\n    \"observations\": \"Proceso completado exitosamente. La mascota se encuentra en excelente estado.\",\n    \"adoptionStatus\": \"APPROVED\",\n    \"veterinarian\": {\n        \"id\": 2,\n        \"licenseNumber\": \"123456789\",\n        \"speciality\": \"Medicina Interna\",\n        \"firstName\": \"Dr. Gabriel\",\n        \"lastName\": \"García\",\n        \"email\": \"gabriel.garcia@veterinaria.com\",\n        \"phoneNumber\": \"+57 987 6543210\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "associate adoptions with a veterinarian",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"id\": {{new_id_adoption_1}},\r\n    \"description\": \"Adopción de mascota senior completada exitosamente\",\r\n    \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\r\n    \"adoptionStatus\": \"APPROVED\"\r\n  \r\n},\r\n    {\"id\":{{new_id_adoption_2}},\r\n    \"description\":\"Adopción de mascota senior completada exitosamente\",\r\n    \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\r\n    \"adoptionStatus\": \"APPROVED\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "associate adoptions with a veterinarian",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"id\": {{new_id_adoption_1}},\r\n    \"description\": \"Adopción de mascota senior completada exitosamente\",\r\n    \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\r\n    \"adoptionStatus\": \"APPROVED\"\r\n  \r\n},\r\n    {\"id\":{{new_id_adoption_2}},\r\n    \"description\":\"Adopción de mascota senior completada exitosamente\",\r\n    \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\r\n    \"adoptionStatus\": \"APPROVED\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoptions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoptions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"description\": \"Adopción de mascota senior completada exitosamente\",\n        \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\n        \"adoptionStatus\": \"APPROVED\"\n    },\n    {\n        \"id\": 2,\n        \"description\": \"Adopción de mascota senior completada exitosamente\",\n        \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\n        \"adoptionStatus\": \"APPROVED\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "associate adoptions with a veterinarian",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 1,\r\n        \"description\": \"Adopción de mascota senior completada exitosamente\",\r\n        \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\r\n        \"adoptionStatus\": \"APPROVED\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"description\": \"Adopción de mascota senior completada exitosamente\",\r\n        \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\r\n        \"adoptionStatus\": \"APPROVED\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "associate adoptions with a veterinarian",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 1,\r\n        \"description\": \"Adopción de mascota senior completada exitosamente\",\r\n        \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\r\n        \"adoptionStatus\": \"APPROVED\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"description\": \"Adopción de mascota senior completada exitosamente\",\r\n        \"observations\": \"Proceso completado sin inconvenientes. La mascota se encuentra en excelente estado de salud.\",\r\n        \"adoptionStatus\": \"APPROVED\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoptions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoptions"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n\r\n    \"apierror\": {\r\n\r\n        \"status\": \"NOT_FOUND\",\r\n\r\n        \"timestamp\": \"21-02-2023 10:25:21\",\r\n\r\n        \"message\": \"The adoption with the given id was not found\"\r\n\r\n    }\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "delete an adoption from a veterinarian",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/{{adoption_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption",
+						"{{adoption_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete an adoption from a veterinarian",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/{{adoption_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption",
+								"{{adoption_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete an adoption to a veterinarian who does not exist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/0/adoption/{{adoption_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"0",
+						"adoption",
+						"{{adoption_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete an adoption to a veterinarian who does not exist",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/0/adoption/{{adoption_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"0",
+								"adoption",
+								"{{adoption_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete an adoption that does not exist to a veterinarian",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}",
+						"adoption",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete an adoption that does not exist to a veterinarian",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{{vet_id}}/adoption/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{{vet_id}}",
+								"adoption",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete an adoption",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/adoptions/{{adoption_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"adoptions",
+						"{{adoption_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete an adoption",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/adoptions/{id_adoption}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"adoptions",
+								"{id_adoption}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete a veterinarian",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/veterinarians/{{vet_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"veterinarians",
+						"{{vet_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete a veterinarian",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/veterinarians/{id_veterinarian}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"veterinarians",
+								"{id_veterinarian}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		}
+	]
+}
